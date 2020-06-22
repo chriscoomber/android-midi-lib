@@ -1,4 +1,4 @@
-package com.leff.midi
+package com.leff.midi.sample
 
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +7,8 @@ import android.os.Message
 import android.text.method.ScrollingMovementMethod
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.leff.midi.MidiFile
+import com.leff.midi.MidiTrack
 import com.leff.midi.event.MidiEvent
 import com.leff.midi.event.NoteOff
 import com.leff.midi.event.NoteOn

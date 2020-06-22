@@ -1,4 +1,4 @@
-package com.leff.midi
+package com.leff.midi.sample
 
 import org.junit.Test
 
