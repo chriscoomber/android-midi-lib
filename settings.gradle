@@ -1,0 +1,3 @@
+include ':midi'
+include ':sample'
+rootProject.name = "android-midi-lib"
