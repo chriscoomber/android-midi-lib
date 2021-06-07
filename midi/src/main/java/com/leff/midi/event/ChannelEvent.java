@@ -81,51 +81,6 @@ public class ChannelEvent extends MidiEvent
     }
 
     @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(mTick != other.getTick())
-        {
-            return mTick < other.getTick() ? -1 : 1;
-        }
-        if(mDelta.getValue() != other.mDelta.getValue())
-        {
-            return mDelta.getValue() < other.mDelta.getValue() ? 1 : -1;
-        }
-
-        if(!(other instanceof ChannelEvent))
-        {
-            return 1;
-        }
-
-        ChannelEvent o = (ChannelEvent) other;
-        if(mType != o.getType())
-        {
-            if(mOrderMap == null)
-            {
-                buildOrderMap();
-            }
-
-            int order1 = mOrderMap.get(mType);
-            int order2 = mOrderMap.get(o.getType());
-
-            return order1 < order2 ? -1 : 1;
-        }
-        if(mValue1 != o.mValue1)
-        {
-            return mValue1 < o.mValue1 ? -1 : 1;
-        }
-        if(mValue2 != o.mValue2)
-        {
-            return mValue2 < o.mValue2 ? -1 : 1;
-        }
-        if(mChannel != o.getChannel())
-        {
-            return mChannel < o.getChannel() ? -1 : 1;
-        }
-        return 0;
-    }
-
-    @Override
     public boolean requiresStatusByte(MidiEvent prevEvent)
     {
         if(prevEvent == null)
@@ -187,20 +142,6 @@ public class ChannelEvent extends MidiEvent
             default:
                 return new ChannelEvent(tick, delta, type, channel, val1, val2);
         }
-    }
-
-    private static void buildOrderMap()
-    {
-
-        mOrderMap = new HashMap<Integer, Integer>();
-
-        mOrderMap.put(PROGRAM_CHANGE, 0);
-        mOrderMap.put(CONTROLLER, 1);
-        mOrderMap.put(NOTE_ON, 2);
-        mOrderMap.put(NOTE_OFF, 3);
-        mOrderMap.put(NOTE_AFTERTOUCH, 4);
-        mOrderMap.put(CHANNEL_AFTERTOUCH, 5);
-        mOrderMap.put(PITCH_BEND, 6);
     }
 
     public static final int NOTE_OFF = 0x8;

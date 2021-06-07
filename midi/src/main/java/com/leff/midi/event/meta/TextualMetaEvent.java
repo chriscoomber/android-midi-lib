@@ -60,28 +60,6 @@ public abstract class TextualMetaEvent extends MetaEvent
     }
 
     @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(mTick != other.getTick())
-        {
-            return mTick < other.getTick() ? -1 : 1;
-        }
-        if(mDelta.getValue() != other.getDelta())
-        {
-            return mDelta.getValue() < other.getDelta() ? 1 : -1;
-        }
-
-        if(!(other instanceof TextualMetaEvent))
-        {
-            return 1;
-        }
-
-        TextualMetaEvent o = (TextualMetaEvent) other;
-
-        return mText.compareTo(o.mText);
-    }
-
-    @Override
     public String toString()
     {
         return super.toString() + ": " + mText;

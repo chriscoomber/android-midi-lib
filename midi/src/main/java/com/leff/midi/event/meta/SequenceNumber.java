@@ -77,30 +77,4 @@ public class SequenceNumber extends MetaEvent
     {
         return 5;
     }
-
-    @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(mTick != other.getTick())
-        {
-            return mTick < other.getTick() ? -1 : 1;
-        }
-        if(mDelta.getValue() != other.getDelta())
-        {
-            return mDelta.getValue() < other.getDelta() ? 1 : -1;
-        }
-
-        if(!(other instanceof SequenceNumber))
-        {
-            return 1;
-        }
-
-        SequenceNumber o = (SequenceNumber) other;
-
-        if(mNumber != o.mNumber)
-        {
-            return mNumber < o.mNumber ? -1 : 1;
-        }
-        return 0;
-    }
 }

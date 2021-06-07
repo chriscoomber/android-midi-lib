@@ -140,34 +140,4 @@ public class TimeSignature extends MetaEvent
     {
         return super.toString() + " " + mNumerator + "/" + getRealDenominator();
     }
-
-    @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(mTick != other.getTick())
-        {
-            return mTick < other.getTick() ? -1 : 1;
-        }
-        if(mDelta.getValue() != other.getDelta())
-        {
-            return mDelta.getValue() < other.getDelta() ? 1 : -1;
-        }
-
-        if(!(other instanceof TimeSignature))
-        {
-            return 1;
-        }
-
-        TimeSignature o = (TimeSignature) other;
-
-        if(mNumerator != o.mNumerator)
-        {
-            return mNumerator < o.mNumerator ? -1 : 1;
-        }
-        if(mDenominator != o.mDenominator)
-        {
-            return mDenominator < o.mDenominator ? -1 : 1;
-        }
-        return 0;
-    }
 }

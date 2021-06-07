@@ -92,12 +92,6 @@ public class MetronomeTick extends MidiEvent
     }
 
     @Override
-    public int compareTo(MidiEvent o)
-    {
-        return 0;
-    }
-
-    @Override
     protected int getEventSize()
     {
         return 0;

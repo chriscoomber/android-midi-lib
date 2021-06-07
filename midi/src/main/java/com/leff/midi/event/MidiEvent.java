@@ -23,7 +23,7 @@ import java.io.OutputStream;
 import com.leff.midi.event.meta.MetaEvent;
 import com.leff.midi.util.VariableLengthInt;
 
-public abstract class MidiEvent implements Comparable<MidiEvent>
+public abstract class MidiEvent
 {
     protected long mTick;
     protected VariableLengthInt mDelta;

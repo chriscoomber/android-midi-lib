@@ -78,37 +78,6 @@ public class SystemExclusiveEvent extends MidiEvent
     }
 
     @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(this.mTick < other.mTick)
-        {
-            return -1;
-        }
-        if(this.mTick > other.mTick)
-        {
-            return 1;
-        }
-
-        if(this.mDelta.getValue() > other.mDelta.getValue())
-        {
-            return -1;
-        }
-        if(this.mDelta.getValue() < other.mDelta.getValue())
-        {
-            return 1;
-        }
-
-        if(other instanceof SystemExclusiveEvent)
-        {
-            String curr = new String(mData);
-            String comp = new String(((SystemExclusiveEvent) other).mData);
-            return curr.compareTo(comp);
-        }
-
-        return 1;
-    }
-
-    @Override
     protected int getEventSize()
     {
         return 1 + mLength.getByteCount() + mData.length;

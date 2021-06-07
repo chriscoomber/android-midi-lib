@@ -175,24 +175,4 @@ public class SmpteOffset extends MetaEvent
             return null;
         }
     }
-
-    @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(mTick != other.getTick())
-        {
-            return mTick < other.getTick() ? -1 : 1;
-        }
-        if(mDelta.getValue() != other.getDelta())
-        {
-            return mDelta.getValue() < other.getDelta() ? 1 : -1;
-        }
-
-        if(!(other instanceof SmpteOffset))
-        {
-            return 1;
-        }
-
-        return 0;
-    }
 }

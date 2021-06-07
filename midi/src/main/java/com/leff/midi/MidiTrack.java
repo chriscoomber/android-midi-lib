@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -43,7 +44,7 @@ public class MidiTrack
     private boolean mClosed;
     private long mEndOfTrackDelta;
 
-    private TreeSet<MidiEvent> mEvents;
+    private ArrayList<MidiEvent> mEvents;
 
     public static MidiTrack createTempoTrack()
     {
@@ -57,7 +58,7 @@ public class MidiTrack
 
     public MidiTrack()
     {
-        mEvents = new TreeSet<MidiEvent>();
+        mEvents = new ArrayList<>();
         mSize = 0;
         mSizeNeedsRecalculating = false;
         mClosed = false;
@@ -121,7 +122,7 @@ public class MidiTrack
         }
     }
 
-    public TreeSet<MidiEvent> getEvents()
+    public ArrayList<MidiEvent> getEvents()
     {
         return mEvents;
     }
@@ -147,7 +148,7 @@ public class MidiTrack
             return 0;
         }
 
-        MidiEvent E = mEvents.last();
+        MidiEvent E = mEvents.get(mEvents.size()-1);
         return E.getTick();
     }
 
@@ -292,12 +293,7 @@ public class MidiTrack
 
     public void closeTrack()
     {
-        long lastTick = 0;
-        if(mEvents.size() > 0)
-        {
-            MidiEvent last = mEvents.last();
-            lastTick = last.getTick();
-        }
+        long lastTick = getLengthInTicks();
         EndOfTrack eot = new EndOfTrack(lastTick + mEndOfTrackDelta, 0);
         insertEvent(eot);
     }

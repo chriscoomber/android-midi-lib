@@ -69,30 +69,4 @@ public class MidiChannelPrefix extends MetaEvent
 
         return new MidiChannelPrefix(tick, delta, channel);
     }
-
-    @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(mTick != other.getTick())
-        {
-            return mTick < other.getTick() ? -1 : 1;
-        }
-        if(mDelta.getValue() != other.getDelta())
-        {
-            return mDelta.getValue() < other.getDelta() ? 1 : -1;
-        }
-
-        if(!(other instanceof MidiChannelPrefix))
-        {
-            return 1;
-        }
-
-        MidiChannelPrefix o = (MidiChannelPrefix) other;
-
-        if(mChannel != o.mChannel)
-        {
-            return mChannel < o.mChannel ? -1 : 1;
-        }
-        return 0;
-    }
 }

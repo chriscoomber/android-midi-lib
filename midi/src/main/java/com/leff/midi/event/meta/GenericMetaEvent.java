@@ -31,20 +31,4 @@ public class GenericMetaEvent extends MetaEvent
         out.write(mLength.getBytes());
         out.write(mData);
     }
-
-    @Override
-    public int compareTo(MidiEvent other)
-    {
-        if(mTick != other.getTick())
-        {
-            return mTick < other.getTick() ? -1 : 1;
-        }
-        if(mDelta.getValue() != other.getDelta())
-        {
-            return mDelta.getValue() < other.getDelta() ? 1 : -1;
-        }
-
-        return 1;
-    }
-
 }
